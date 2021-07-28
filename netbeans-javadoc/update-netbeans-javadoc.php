@@ -57,6 +57,9 @@ if ($json) {
             $release_info = $data[$branch_name];
             $version_name = $release_info['versionName'];
             $longapidocurl = $release_info['apidocurl'];
+            if (!is_string($longapidocurl) || strpos($longapidocurl, "https://bits.netbeans.org/") !== 0) {
+              continue;
+            }
             $apidocurl = substr($longapidocurl,26); // remove bits.netbeans.org
             $release_extract_dir = $extract_dir . $apidocurl . '/';
 	    $index = '<li>';
